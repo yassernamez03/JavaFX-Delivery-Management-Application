@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.deliveryapp.controller.LivreurController">
+   <children>
+      <HBox styleClass="section-header">
+         <children>
+            <Label styleClass="section-title" text="Gestion des Livreurs">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </HBox>
+      
+      <HBox spacing="20.0" styleClass="content-container">
+         <children>
+            <!-- Left side: Form -->
+            <VBox spacing="15.0" styleClass="form-container">
+               <children>
+                  <Label styleClass="form-title" text="Informations du Livreur">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  
+                  <GridPane hgap="10.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+                     </columnConstraints>
+                     <children>
+                        <Label styleClass="field-label" text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="nomField" promptText="Nom du livreur" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        
+                        <Label styleClass="field-label" text="Prénom:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="prenomField" promptText="Prénom du livreur" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label styleClass="field-label" text="Téléphone:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField fx:id="telephoneField" promptText="Numéro de téléphone" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Button fx:id="addButton" onAction="#handleAddLivreur" styleClass="btn-primary" text="Ajouter" />
+                        <Button fx:id="updateButton" onAction="#handleUpdateLivreur" styleClass="btn-secondary" text="Modifier" />
+                        <Button fx:id="cancelButton" onAction="#handleCancel" styleClass="btn-cancel" text="Annuler" />
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            
+            <!-- Right side: Table -->
+            <VBox spacing="10.0" styleClass="table-container" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label styleClass="table-title" text="Liste des Livreurs">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="refreshButton" onAction="#handleRefresh" styleClass="btn-refresh" text="Actualiser" />
+                        <Button fx:id="deleteButton" onAction="#handleDeleteLivreur" styleClass="btn-danger" text="Supprimer" />
+                     </children>
+                  </HBox>
+                  
+                  <TableView fx:id="livreurTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="nomColumn" prefWidth="150.0" text="Nom" />
+                        <TableColumn fx:id="prenomColumn" prefWidth="150.0" text="Prénom" />
+                        <TableColumn fx:id="telephoneColumn" prefWidth="120.0" text="Téléphone" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

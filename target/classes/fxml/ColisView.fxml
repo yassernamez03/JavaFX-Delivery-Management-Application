@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.deliveryapp.controller.ColisController">
+   <children>
+      <HBox styleClass="section-header">
+         <children>
+            <Label styleClass="section-title" text="Gestion des Colis">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </HBox>
+      
+      <HBox spacing="20.0" styleClass="content-container">
+         <children>
+            <!-- Left side: Form -->
+            <VBox spacing="15.0" styleClass="form-container">
+               <children>
+                  <Label styleClass="form-title" text="Informations du Colis">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  
+                  <GridPane hgap="10.0" vgap="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+                     </columnConstraints>
+                     <children>
+                        <Label styleClass="field-label" text="Destinataire:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="destinataireField" promptText="Nom du destinataire" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        
+                        <Label styleClass="field-label" text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextArea fx:id="adresseField" prefRowCount="3" promptText="Adresse de livraison" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        
+                        <Label styleClass="field-label" text="Date d'envoi:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="dateEnvoiPicker" promptText="Sélectionnez la date" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        
+                        <Label styleClass="field-label" text="Livreur:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="livreurComboBox" promptText="Sélectionnez un livreur" styleClass="form-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Button fx:id="addColisButton" onAction="#handleAddColis" styleClass="btn-primary" text="Ajouter Colis" />
+                        <Button fx:id="updateColisButton" onAction="#handleUpdateColis" styleClass="btn-secondary" text="Modifier" />
+                        <Button fx:id="cancelColisButton" onAction="#handleCancel" styleClass="btn-cancel" text="Annuler" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            
+            <!-- Right side: Table and Actions -->
+            <VBox spacing="10.0" styleClass="table-container" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label styleClass="table-title" text="Liste des Colis">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="refreshColisButton" onAction="#handleRefresh" styleClass="btn-refresh" text="Actualiser" />
+                     </children>
+                  </HBox>
+                  
+                  <TableView fx:id="colisTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colisIdColumn" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="destinataireColumn" prefWidth="120.0" text="Destinataire" />
+                        <TableColumn fx:id="adresseColumn" prefWidth="150.0" text="Adresse" />
+                        <TableColumn fx:id="dateEnvoiColumn" prefWidth="100.0" text="Date Envoi" />
+                        <TableColumn fx:id="statutColumn" prefWidth="80.0" text="Statut" />
+                        <TableColumn fx:id="dateLivraisonColumn" prefWidth="100.0" text="Date Livraison" />
+                        <TableColumn fx:id="livreurColumn" prefWidth="120.0" text="Livreur" />
+                     </columns>
+                  </TableView>
+                  
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                     <children>
+                        <Button fx:id="assignButton" onAction="#handleAssignToDriver" styleClass="btn-action" text="Associer au Livreur" />
+                        <Button fx:id="markDeliveredButton" onAction="#handleMarkAsDelivered" styleClass="btn-success" text="Marquer comme Livré" />
+                        <Button fx:id="deleteColisButton" onAction="#handleDeleteColis" styleClass="btn-danger" text="Supprimer" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="exportButton" onAction="#handleExportCSV" styleClass="btn-export" text="Exporter Livraisons du Jour" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
